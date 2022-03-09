@@ -51,7 +51,7 @@ module.exports = class CartItem {
      * @exception InvalidQuantityException is thrown when the quantity is smaller than 1.
      */
     set quantity(value) {
-        throw new Error();
+        this.#quantity = value;
     }
 
     /**
@@ -67,7 +67,7 @@ module.exports = class CartItem {
      * @exception InvalidPriceException is thrown when the price is smaller than 10.
      */
     set price(value) {
-        throw new Error();
+        this.#price = value;
     }
 
     /**
@@ -83,7 +83,7 @@ module.exports = class CartItem {
 }
 
 //TODO externalize Error class (duplicate with Cart and CartItem)
-class Error {
+/*class Error {
     #message;
     constructor(message) {
         this.#message = message;
@@ -105,7 +105,7 @@ module.exports = class InvalidQuantityException extends CartItemException{
 
 module.exports = class InvalidPriceException extends CartItemException{
 }
-
+*/
 
 
 
