@@ -9,7 +9,7 @@
 "use strict";
 
 const InvalidQuantityException  = require("./exceptions/InvalidQuantityException.js");
-const InvalidArticleException   = require("./exceptions/InvalidArticleException.js");
+const InvalidArticleException   = require("./exceptions/InvalidArticleIdException.js");
 const InvalidPriceException     = require("./exceptions/InvalidPriceException.js");
 
 module.exports = class CartItem {

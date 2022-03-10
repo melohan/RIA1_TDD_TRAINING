@@ -9,7 +9,7 @@
 
 let CartItem =  require('../CartItem.js');
 const InvalidQuantityException  = require("../exceptions/InvalidQuantityException.js");
-const InvalidArticleException   = require("../exceptions/InvalidArticleException.js");
+const InvalidArticleIdException   = require("../exceptions/InvalidArticleIdException.js");
 const InvalidPriceException     = require("../exceptions/InvalidPriceException.js");
 
 test('allGetters_NominalCase_Success', () => {
