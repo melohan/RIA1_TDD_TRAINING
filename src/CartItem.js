@@ -9,7 +9,7 @@
 "use strict";
 
 const InvalidQuantityException  = require("./exceptions/InvalidQuantityException.js");
-const InvalidArticleException   = require("./exceptions/InvalidArticleIdException.js");
+const InvalidArticleIdException   = require("./exceptions/InvalidArticleIdException.js");
 const InvalidPriceException     = require("./exceptions/InvalidPriceException.js");
 
 module.exports = class CartItem {
@@ -31,6 +31,8 @@ module.exports = class CartItem {
      * @exception InvalidPriceException is thrown when the price is smaller than 10.
      */
     constructor(articleId, quantity, price) {
+        if(articleId < 0)
+            throw new InvalidArticleIdException("Invalid article id (smaller than 1)");
         this.#articleId = articleId;
         this.#quantity = quantity;
         this.#price = price;
