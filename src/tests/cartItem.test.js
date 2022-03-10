@@ -8,10 +8,9 @@
 "use strict";
 
 let CartItem =  require('../CartItem.js');
-
-const InvalidArticleIdException = require("../CartItem.js");
-const InvalidQuantityException = require("../CartItem.js");
-const InvalidPriceException = require("../CartItem.js");
+const InvalidQuantityException  = require("../exceptions/InvalidQuantityException.js");
+const InvalidArticleException   = require("../exceptions/InvalidArticleException.js");
+const InvalidPriceException     = require("../exceptions/InvalidPriceException.js");
 
 test('allGetters_NominalCase_Success', () => {
     //given
@@ -133,3 +132,4 @@ test('Price_SetPriceInvalidPrice_ThrowException', () => {
     //then
     //Exception is thrown
 })
+

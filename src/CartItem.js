@@ -8,6 +8,10 @@
 
 "use strict";
 
+const InvalidQuantityException  = require("./exceptions/InvalidQuantityException.js");
+const InvalidArticleException   = require("./exceptions/InvalidArticleException.js");
+const InvalidPriceException     = require("./exceptions/InvalidPriceException.js");
+
 module.exports = class CartItem {
 
     //region private attributes
@@ -31,6 +35,7 @@ module.exports = class CartItem {
         this.#quantity = quantity;
         this.#price = price;
     }
+
     /**
      * @brief This property gets the article id
      */
@@ -76,36 +81,9 @@ module.exports = class CartItem {
     get total() {
         return this.#quantity * this.#price;
     }
+
     //endregion public methods
 
     //region private methods
     //endregion private methods
 }
-
-//TODO externalize Error class (duplicate with Cart and CartItem)
-/*class Error {
-    #message;
-    constructor(message) {
-        this.#message = message;
-    }
-
-    get message(){
-        return this.#message;
-    }
-}
-
-class CartItemException extends Error{
-}
-
-module.exports = class InvalidArticleIdException extends CartItemException{
-}
-
-module.exports = class InvalidQuantityException extends CartItemException{
-}
-
-module.exports = class InvalidPriceException extends CartItemException{
-}
-*/
-
-
-
