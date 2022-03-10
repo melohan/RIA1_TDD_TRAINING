@@ -8,9 +8,9 @@
 
 "use strict";
 
-const InvalidQuantityException  = require("./exceptions/InvalidQuantityException.js");
-const InvalidArticleIdException   = require("./exceptions/InvalidArticleIdException.js");
-const InvalidPriceException     = require("./exceptions/InvalidPriceException.js");
+const InvalidQuantityException = require("./exceptions/InvalidQuantityException.js");
+const InvalidArticleIdException = require("./exceptions/InvalidArticleIdException.js");
+const InvalidPriceException = require("./exceptions/InvalidPriceException.js");
 
 module.exports = class CartItem {
 
@@ -31,11 +31,11 @@ module.exports = class CartItem {
      * @exception InvalidPriceException is thrown when the price is smaller than 10.
      */
     constructor(articleId, quantity, price) {
-        if(articleId < 0)
+        if (articleId < 0)
             throw new InvalidArticleIdException("Invalid article id (smaller than 1)");
         this.#articleId = articleId;
-        this.#quantity = quantity;
-        this.#price = price;
+        this.quantity = quantity;
+        this.price = price;
     }
 
     /**
@@ -58,6 +58,8 @@ module.exports = class CartItem {
      * @exception InvalidQuantityException is thrown when the quantity is smaller than 1.
      */
     set quantity(value) {
+        if (value < 0)
+            throw new InvalidQuantityException("Invalid quantity (smaller than 0)")
         this.#quantity = value;
     }
 
@@ -74,6 +76,8 @@ module.exports = class CartItem {
      * @exception InvalidPriceException is thrown when the price is smaller than 10.
      */
     set price(value) {
+        if (value < 10)
+            throw new InvalidPriceException("Invalid price (smaller than 10)")
         this.#price = value;
     }
 
