@@ -5,10 +5,10 @@
  * @version   13-02-2022 - original (dedicated to RIA1)
  */
 
-
 let Cart = require('../Cart.js');
-const CartItem = require("../CartItem.js");
-const EmptyCartException = require("../CartItem.js");
+let CartItem =  require('../CartItem.js');
+const EmptyCartException  = require("../exceptions/EmptyCartException.js");
+
 
 test('getTotalCart_NominalCase_Success', () => {
     //given
