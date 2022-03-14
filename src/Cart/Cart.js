@@ -12,7 +12,7 @@
 const EmptyCartException = require("./EmptyCartException.js");
 const UpdateCartException = require("./UpdateCartException.js");
 
-module.exports = class Cart{
+module.exports = class Cart {
 
     //region private attributes
     #items = null;
@@ -23,7 +23,7 @@ module.exports = class Cart{
      * @brief This method constructs a Cart Object
      * @param items : CartItem[] of cartItems
      */
-    constructor(items = null){
+    constructor(items = null) {
         this.#items = items;
     }
 
@@ -31,8 +31,10 @@ module.exports = class Cart{
      * @brief This property returns the list of CartItems presents in the Cart.
      * @exception EmptyCartException is thrown if the Cart is empty
      */
-    get items(){
-        throw new Error();
+    get items() {
+        if (this.#items === null)
+            throw new EmptyCartException("Cart has no items");
+        return this.#items;
     }
 
     /**
@@ -40,8 +42,10 @@ module.exports = class Cart{
      * @exception EmptyCartException is thrown if the Cart is empty
      * @return {number} : the total in CHF
      */
-    get totalPrice(){
-        throw new Error();
+    get totalPrice() {
+        let total = 0.;
+        this.items.forEach(item => total += item.total);
+        return total;
     }
 
     /**
@@ -49,8 +53,12 @@ module.exports = class Cart{
      * @param distinct : boolean a distinct constraint
      * @returns {number} : number of CartItems
      */
-    count(distinct = false){
-        throw new Error();
+    count(distinct = false) {
+        let total = 0;
+        this.items.forEach(item => {
+            total += distinct ? 1 : item.quantity;
+        });
+        return total;
     }
 
     /**
@@ -60,22 +68,38 @@ module.exports = class Cart{
      *        Remove an existing item if the new quantity to set is 0
      * @param items
      */
-    updateCart(items){
-        throw new Error();
+    updateCart(items) {
+
+        if (items === null)
+            throw new UpdateCartException();
+
+        if (this.#items === null) {
+            // if our items was empty we assign it the given items
+            this.#items = items;
+        } else {
+            // if it wasn't empty we have to compare and update our items list.
+            let toKeep = items.filter((a) => this.#items.includes(a));
+            let toAdd = items.filter((a) => !this.#items.includes(a));
+            this.#items = toKeep;
+            this.#items = this.#items.concat(toAdd);
+        }
+
     }
+
     //endregion public methods
 
     //region private methods
-    #exists(cartItemToFind){
+    #exists(cartItemToFind) {
         throw new Error();
     }
 
-    #updateQuantity(cartItemToUpdate){
+    #updateQuantity(cartItemToUpdate) {
         throw new Error();
     }
 
-    #removeCartItem(cartItemToRemove){
+    #removeCartItem(cartItemToRemove) {
         throw new Error();
     }
+
     //endregion private methods
 }
